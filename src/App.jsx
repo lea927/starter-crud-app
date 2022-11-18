@@ -1,3 +1,4 @@
+import AddUser from './AddUser'
 import './App.css'
 import Users from './Users'
 
@@ -9,7 +10,10 @@ function App() {
   ]
 
   return (
-    <Users usersList={usersList}/>
+    <>
+      <Users usersList={usersList}/>
+      <AddUser/>
+    </>
     )
 }
 
