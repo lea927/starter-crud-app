@@ -39,8 +39,23 @@ function App() {
   setUser({ ...user, [event.target.name]: event.target.value });
  };
 
+ const fetchUserByUsername = (userName) => {
+  const fetchedUser = users.find((u) => {
+   if (u.userName === userName) {
+    return u;
+   }
+  });
+  return fetchedUser;
+ };
+
+ const userDontExist = ({ userName }) => {
+  return !fetchUserByUsername(userName);
+ };
+
  const addUser = () => {
-  setUsers([...users, user]);
+  if (userDontExist(user)) {
+   setUsers([...users, user]);
+  }
  };
 
  return (
