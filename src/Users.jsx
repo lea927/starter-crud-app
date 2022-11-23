@@ -1,11 +1,11 @@
-function Users({ usersList }) {
+function Users({ users }) {
  return (
   <div>
    <ul>
-    {usersList.map((user) => {
+    {users.map((user) => {
      return (
       <li key={user.id}>
-       <p>{`${user.userName} 's total games played: ${user.totalGames}`}</p>
+       <p>{`${user.userName}'s total games played: ${user.totalGames}`}</p>
       </li>
      );
     })}
