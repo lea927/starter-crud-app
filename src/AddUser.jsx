@@ -1,4 +1,4 @@
-function AddUser({ user, handleUserChange, addUser }) {
+function AddUser({ user, handleUserChange, addUser, isAnyFieldEmpty }) {
  return (
   <div>
    <div>
@@ -41,7 +41,9 @@ function AddUser({ user, handleUserChange, addUser }) {
      onChange={handleUserChange}
     />
    </div>
-   <button onClick={addUser}>Add User</button>
+   <button onClick={addUser} disabled={isAnyFieldEmpty}>
+    Add User
+   </button>
   </div>
  );
 }

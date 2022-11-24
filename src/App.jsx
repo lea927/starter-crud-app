@@ -29,14 +29,18 @@ function App() {
  ]);
 
  const [user, setUser] = useState({
-  id: 0,
+  id: "",
   firstName: "",
   lastName: "",
   totalGames: 0,
   userName: "",
  });
+
+ const [isAnyFieldEmpty, setIsAnyFieldEmpty] = useState(true);
+
  const handleUserChange = (event) => {
   setUser({ ...user, [event.target.name]: event.target.value });
+  enableFields({ ...user, [event.target.name]: event.target.value });
  };
 
  const fetchUserByUsername = (userName) => {
@@ -52,6 +56,12 @@ function App() {
   return !fetchUserByUsername(userName);
  };
 
+ const enableFields = ({ id, firstName, lastName, userName }) => {
+  setIsAnyFieldEmpty(
+   id === "" || firstName === "" || lastName === "" || userName === ""
+  );
+ };
+
  const addUser = () => {
   if (userDontExist(user)) {
    setUsers([...users, user]);
@@ -63,7 +73,12 @@ function App() {
  return (
   <>
    <Users users={users} />
-   <AddUser user={user} handleUserChange={handleUserChange} addUser={addUser} />
+   <AddUser
+    user={user}
+    handleUserChange={handleUserChange}
+    addUser={addUser}
+    isAnyFieldEmpty={isAnyFieldEmpty}
+   />
   </>
  );
 }
