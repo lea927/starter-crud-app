@@ -2,6 +2,7 @@ import AddUser from "./AddUser";
 import "./App.css";
 import Users from "./Users";
 import React, { useState } from "react";
+import ToggleBtn from "./ToggleBtn";
 
 function App() {
  const [users, setUsers] = useState([
@@ -37,6 +38,9 @@ function App() {
  });
 
  const [isAnyFieldEmpty, setIsAnyFieldEmpty] = useState(true);
+ const [totalGames, setTotalGames] = useState(0);
+ const [buttonTxt, setButtonTxt] = useState("Show the number of games played");
+ const [showGamesPlayed, setShowGamesPlayed] = useState(true);
 
  const handleUserChange = (event) => {
   setUser({ ...user, [event.target.name]: event.target.value });
@@ -66,7 +70,16 @@ function App() {
   if (userDontExist(user)) {
    setUsers([...users, user]);
   } else {
-    alert('Username already exists!');
+   alert("Username already exists!");
+  }
+ };
+
+ const handleShowingGamesPlayed = () => {
+  setShowGamesPlayed(showGamesPlayed === true ? false : true);
+  if (showGamesPlayed) {
+   setButtonTxt("Hide the number of games played");
+  } else {
+   setButtonTxt("Show the number of games played");
   }
  };
 
@@ -78,6 +91,10 @@ function App() {
     handleUserChange={handleUserChange}
     addUser={addUser}
     isAnyFieldEmpty={isAnyFieldEmpty}
+   />
+   <ToggleBtn
+    buttonTxt={buttonTxt}
+    handleShowingGamesPlayed={handleShowingGamesPlayed}
    />
   </>
  );
