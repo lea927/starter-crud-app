@@ -55,6 +55,8 @@ function App() {
  const addUser = () => {
   if (userDontExist(user)) {
    setUsers([...users, user]);
+  } else {
+    alert('Username already exists!');
   }
  };
 
