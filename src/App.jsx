@@ -10,21 +10,21 @@ function App() {
    id: 1,
    firstName: "sushi",
    lastName: "tokyo",
-   totalGames: 0,
+   totalGames: 1,
    userName: "sushi1",
   },
   {
    id: 2,
    firstName: "maki",
    lastName: "osaka",
-   totalGames: 0,
+   totalGames: 2,
    userName: "maki2",
   },
   {
    id: 3,
    firstName: "udon",
    lastName: "gyudon",
-   totalGames: 0,
+   totalGames: 3,
    userName: "udon3",
   },
  ]);
@@ -38,8 +38,7 @@ function App() {
  });
 
  const [isAnyFieldEmpty, setIsAnyFieldEmpty] = useState(true);
- const [totalGames, setTotalGames] = useState(0);
- const [buttonTxt, setButtonTxt] = useState("Show the number of games played");
+ const [buttonTxt, setButtonTxt] = useState("Hide the number of games played");
  const [showGamesPlayed, setShowGamesPlayed] = useState(true);
 
  const handleUserChange = (event) => {
@@ -75,17 +74,17 @@ function App() {
  };
 
  const handleShowingGamesPlayed = () => {
-  setShowGamesPlayed(showGamesPlayed === true ? false : true);
+  setShowGamesPlayed(!showGamesPlayed);
   if (showGamesPlayed) {
-   setButtonTxt("Hide the number of games played");
+    setButtonTxt("Show the number of games played");
   } else {
-   setButtonTxt("Show the number of games played");
+    setButtonTxt("Hide the number of games played");
   }
  };
 
  return (
   <>
-   <Users users={users} />
+   <Users users={users} showGamesPlayed={showGamesPlayed}/>
    <AddUser
     user={user}
     handleUserChange={handleUserChange}
